@@ -1,0 +1,143 @@
+2024-09-06 20:04:41,009 - INFO - Building image sweb.eval.arm64.sympy__sympy-20590:latest
+Using dockerfile:
+FROM --platform=linux/arm64/v8 sweb.env.arm64.c795f4b88616b8462021ed:latest
+
+COPY ./setup_repo.sh /root/
+RUN /bin/bash /root/setup_repo.sh
+
+WORKDIR /testbed/
+
+Adding (1) setup scripts to image build repo
+2024-09-06 20:04:41,009 - INFO - [SETUP SCRIPT] setup_repo.sh:
+#!/bin/bash
+set -euxo pipefail
+git clone -o origin https://github.com/sympy/sympy /testbed
+chmod -R 777 /testbed
+cd /testbed
+git reset --hard cffd4e0f86fefd4802349a9f9b19ed70934ea354
+git remote remove origin
+source /opt/miniconda3/bin/activate
+conda activate testbed
+echo "Current environment: $CONDA_DEFAULT_ENV"
+python -m pip install -e .
+
+2024-09-06 20:04:41,009 - INFO - Building docker image sweb.eval.arm64.sympy__sympy-20590:latest in logs/build_images/instances/sweb.eval.arm64.sympy__sympy-20590__latest with platform linux/arm64/v8
+2024-09-06 20:04:48,774 - INFO - Step 1/4 : FROM --platform=linux/arm64/v8 sweb.env.arm64.c795f4b88616b8462021ed:latest
+2024-09-06 20:04:48,774 - INFO - 
+2024-09-06 20:04:48,785 - INFO - ---> a1c3df1b6977
+2024-09-06 20:04:48,788 - INFO - Step 2/4 : COPY ./setup_repo.sh /root/
+2024-09-06 20:04:48,789 - INFO - 
+2024-09-06 20:04:50,488 - INFO - ---> 711ecfe7358e
+2024-09-06 20:04:50,488 - INFO - Step 3/4 : RUN /bin/bash /root/setup_repo.sh
+2024-09-06 20:04:50,488 - INFO - 
+2024-09-06 20:04:50,933 - INFO - ---> Running in fd382946b487
+2024-09-06 20:05:00,271 - INFO - + git clone -o origin https://github.com/sympy/sympy /testbed
+2024-09-06 20:05:00,346 - INFO - Cloning into '/testbed'...
+2024-09-06 20:06:20,154 - INFO - Updating files:   3% (68/2021)
+2024-09-06 20:06:20,269 - INFO - Updating files:   4% (81/2021)
+2024-09-06 20:06:20,297 - INFO - Updating files:   4% (97/2021)
+2024-09-06 20:06:20,301 - INFO - Updating files:   5% (102/2021)
+2024-09-06 20:06:20,962 - INFO - Updating files:   6% (122/2021)
+2024-09-06 20:06:21,051 - INFO - Updating files:   6% (132/2021)
+2024-09-06 20:06:21,181 - INFO - Updating files:   7% (142/2021)
+2024-09-06 20:06:21,628 - INFO - Updating files:   8% (162/2021)
+2024-09-06 20:06:21,859 - INFO - Updating files:   9% (182/2021)
+2024-09-06 20:06:22,013 - INFO - Updating files:  10% (203/2021)
+2024-09-06 20:06:22,035 - INFO - Updating files:  10% (206/2021)
+2024-09-06 20:06:22,172 - INFO - Updating files:  11% (223/2021)
+2024-09-06 20:06:22,339 - INFO - Updating files:  12% (243/2021)
+2024-09-06 20:06:22,491 - INFO - Updating files:  13% (263/2021)
+2024-09-06 20:06:22,602 - INFO - Updating files:  14% (283/2021)
+2024-09-06 20:06:22,672 - INFO - Updating files:  15% (304/2021)
+2024-09-06 20:06:22,788 - INFO - Updating files:  16% (324/2021)
+2024-09-06 20:06:22,859 - INFO - Updating files:  17% (344/2021)
+2024-09-06 20:06:22,969 - INFO - Updating files:  18% (364/2021)
+2024-09-06 20:06:23,026 - INFO - Updating files:  18% (378/2021)
+2024-09-06 20:06:23,060 - INFO - Updating files:  19% (384/2021)
+2024-09-06 20:06:23,399 - INFO - Updating files:  20% (405/2021)
+2024-09-06 20:06:23,855 - INFO - Updating files:  21% (425/2021)
+2024-09-06 20:06:24,028 - INFO - Updating files:  21% (430/2021)
+2024-09-06 20:06:24,225 - INFO - Updating files:  22% (445/2021)
+2024-09-06 20:06:24,468 - INFO - Updating files:  23% (465/2021)
+2024-09-06 20:06:24,668 - INFO - Updating files:  24% (486/2021)
+2024-09-06 20:06:24,837 - INFO - Updating files:  25% (506/2021)
+2024-09-06 20:06:25,035 - INFO - Updating files:  25% (522/2021)
+2024-09-06 20:06:25,065 - INFO - Updating files:  26% (526/2021)
+2024-09-06 20:06:25,371 - INFO - Updating files:  27% (546/2021)
+2024-09-06 20:06:25,555 - INFO - Updating files:  28% (566/2021)
+2024-09-06 20:06:28,401 - INFO - Updating files:  28% (572/2021)
+2024-09-06 20:06:28,932 - INFO - Updating files:  29% (587/2021)
+2024-09-06 20:06:29,001 - INFO - Updating files:  30% (607/2021)
+2024-09-06 20:06:29,042 - INFO - Updating files:  30% (616/2021)
+2024-09-06 20:06:29,095 - INFO - Updating files:  31% (627/2021)
+2024-09-06 20:06:29,216 - INFO - Updating files:  32% (647/2021)
+2024-09-06 20:06:29,774 - INFO - Updating files:  33% (667/2021)
+2024-09-06 20:06:29,960 - INFO - Updating files:  34% (688/2021)
+2024-09-06 20:06:30,026 - INFO - Updating files:  34% (700/2021)
+2024-09-06 20:06:30,047 - INFO - Updating files:  35% (708/2021)
+2024-09-06 20:06:30,221 - INFO - Updating files:  36% (728/2021)
+2024-09-06 20:06:30,419 - INFO - Updating files:  37% (748/2021)
+2024-09-06 20:06:30,800 - INFO - Updating files:  38% (768/2021)
+2024-09-06 20:06:31,026 - INFO - Updating files:  38% (784/2021)
+2024-09-06 20:06:31,123 - INFO - Updating files:  39% (789/2021)
+2024-09-06 20:06:31,225 - INFO - Updating files:  40% (809/2021)
+2024-09-06 20:06:31,372 - INFO - Updating files:  41% (829/2021)
+2024-09-06 20:06:31,560 - INFO - Updating files:  42% (849/2021)
+2024-09-06 20:06:31,853 - INFO - Updating files:  43% (870/2021)
+2024-09-06 20:06:32,034 - INFO - Updating files:  43% (888/2021)
+2024-09-06 20:06:32,048 - INFO - Updating files:  44% (890/2021)
+2024-09-06 20:06:32,111 - INFO - Updating files:  45% (910/2021)
+2024-09-06 20:06:32,325 - INFO - Updating files:  46% (930/2021)
+2024-09-06 20:06:32,617 - INFO - Updating files:  47% (950/2021)
+2024-09-06 20:06:32,730 - INFO - Updating files:  48% (971/2021)
+2024-09-06 20:06:32,806 - INFO - Updating files:  49% (991/2021)
+2024-09-06 20:06:33,030 - INFO - Updating files:  49% (1004/2021)
+2024-09-06 20:06:33,055 - INFO - Updating files:  50% (1011/2021)
+2024-09-06 20:06:33,324 - INFO - Updating files:  51% (1031/2021)
+2024-09-06 20:06:33,674 - INFO - Updating files:  52% (1051/2021)
+2024-09-06 20:06:33,854 - INFO - Updating files:  53% (1072/2021)
+2024-09-06 20:06:33,940 - INFO - Updating files:  54% (1092/2021)
+2024-09-06 20:06:34,030 - INFO - Updating files:  54% (1109/2021)
+2024-09-06 20:06:34,053 - INFO - Updating files:  55% (1112/2021)
+2024-09-06 20:06:34,286 - INFO - Updating files:  56% (1132/2021)
+2024-09-06 20:06:34,540 - INFO - Updating files:  57% (1152/2021)
+2024-09-06 20:06:34,903 - INFO - Updating files:  58% (1173/2021)
+2024-09-06 20:06:35,029 - INFO - Updating files:  58% (1190/2021)
+2024-09-06 20:06:35,117 - INFO - Updating files:  59% (1193/2021)
+2024-09-06 20:06:35,173 - INFO - Updating files:  60% (1213/2021)
+2024-09-06 20:06:35,267 - INFO - Updating files:  61% (1233/2021)
+2024-09-06 20:06:35,410 - INFO - Updating files:  62% (1254/2021)
+2024-09-06 20:06:36,333 - INFO - Updating files:  62% (1267/2021)
+2024-09-06 20:06:36,362 - INFO - Updating files:  63% (1274/2021)
+2024-09-06 20:06:36,454 - INFO - Updating files:  64% (1294/2021)
+2024-09-06 20:06:36,785 - INFO - Updating files:  65% (1314/2021)
+2024-09-06 20:06:36,979 - INFO - Updating files:  66% (1334/2021)
+2024-09-06 20:06:37,036 - INFO - Updating files:  66% (1341/2021)
+2024-09-06 20:06:37,243 - INFO - Updating files:  67% (1355/2021)
+2024-09-06 20:06:37,389 - INFO - Updating files:  68% (1375/2021)
+2024-09-06 20:06:37,453 - INFO - Updating files:  69% (1395/2021)
+2024-09-06 20:06:37,556 - INFO - Updating files:  70% (1415/2021)
+2024-09-06 20:06:37,803 - INFO - Updating files:  71% (1435/2021)
+2024-09-06 20:06:37,938 - INFO - Updating files:  72% (1456/2021)
+2024-09-06 20:06:38,048 - INFO - Updating files:  72% (1470/2021)
+2024-09-06 20:06:38,138 - INFO - Updating files:  73% (1476/2021)
+2024-09-06 20:06:38,343 - INFO - Updating files:  74% (1496/2021)
+2024-09-06 20:06:38,543 - INFO - Updating files:  75% (1516/2021)
+2024-09-06 20:06:38,701 - INFO - Updating files:  76% (1536/2021)
+2024-09-06 20:06:39,036 - INFO - Updating files:  76% (1545/2021)
+2024-09-06 20:06:39,179 - INFO - Updating files:  77% (1557/2021)
+2024-09-06 20:06:39,337 - INFO - Updating files:  78% (1577/2021)
+2024-09-06 20:06:39,876 - INFO - Updating files:  79% (1597/2021)
+2024-09-06 20:06:40,033 - INFO - Updating files:  79% (1604/2021)
+2024-09-06 20:06:40,395 - INFO - Updating files:  80% (1617/2021)
+2024-09-06 20:06:40,643 - INFO - Updating files:  81% (1638/2021)
+2024-09-06 20:06:41,163 - INFO - Updating files:  81% (1654/2021)
+2024-09-06 20:06:41,175 - INFO - Updating files:  82% (1658/2021)
+2024-09-06 20:06:41,421 - INFO - Updating files:  83% (1678/2021)
+2024-09-06 20:06:41,588 - INFO - Updating files:  84% (1698/2021)
+2024-09-06 20:06:41,860 - INFO - Updating files:  85% (1718/2021)
+2024-09-06 20:06:42,036 - INFO - Updating files:  85% (1726/2021)
+2024-09-06 20:06:42,367 - INFO - Updating files:  86% (1739/2021)
+2024-09-06 20:06:42,567 - INFO - Updating files:  87% (1759/2021)
+2024-09-06 20:06:43,268 - INFO - Updating files:  87% (1770/2021)
+2024-09-06 20:06:43,476 - INFO - Updating files:  88% (1779/2021)
